@@ -1,5 +1,51 @@
 defmodule PhoenixBricks.Filter do
-  @moduledoc false
+  @moduledoc ~S"""
+  Defines a Filter Schema
+
+  ## Examples
+  ```elixir
+      defmodule RecordFilter do
+        use PhoenixBricks.Filter,
+            filters: [
+              field_matcher: :string
+            ]
+      end
+  ```
+
+  It defines a schema which fields could be used in a search form.
+
+  ## Search changeset
+  ```elixir
+      def index(conn, params) do
+        filters = Map.get(params, "filters", %{})
+
+        conn
+        |> assign(:changeset, RecordFilter.changeset(%RecordFilter{}, filters))
+        |> render("index.html")
+      end
+  ```
+
+  ```html
+      <%= form_for @conn, Routes.session_path(@conn, :create), [method: :post, as: :user], fn f -> %>
+        <div class="form-group">
+          <%= label f, :field_matcher %>
+          <%= text_input f, :field_matcher %>
+        </div>
+
+        <div class="form-group">kab
+          <%= submit "Search" %>
+        </div>
+      <% end %>
+  ```
+
+  ## Convertion from map of params to a list of filtered scopes
+
+  ```elixir
+      iex> changeset = RecordFilter.changeset(%RecordFilter{}, %{"field_matcher" => "value"})
+      iex> RecordFilter.convert_filter_to_scopes(filters)
+      iex> [field_matcher: "value"]
+  ```
+  """
 
   defmacro __using__(filters: filters) do
     filter_keys = Keyword.keys(filters)
