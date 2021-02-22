@@ -57,6 +57,7 @@ defmodule PhoenixBricks.MixProject do
     [
       source_ref: "v#{@version}",
       name: "Phoenix Bricks",
+      main: "PhoenixBricks",
       canonical: "http://hexdocs.pm/phoenix_bricks",
       source_url: @source_url,
       extras: ["README.md", "LICENSE.md"]

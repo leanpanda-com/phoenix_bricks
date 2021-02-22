@@ -77,7 +77,7 @@ defmodule PhoenixBricks do
   iex> Context.list_records(title_matches: "value", price_lte: 42)
   ```
 
-  ### modulo `PhoenixBricks.Scopes`
+  ### `PhoenixBricks.Scopes`
   Using `PhoenixBricks.Scopes` it's possible to extend a module with all scope
   behaviours:
   ```elixir
@@ -189,7 +189,7 @@ defmodule PhoenixBricks do
     <% end %>
   ```
 
-  ### modulo `PhoenixBricks.Filter`
+  ### `PhoenixBricks.Filter`
   Using `PhoenixBricks.Filter` module it's possible to extend a module with all
   filtering behaviours (define a `changeset` and the filter convertion)
   ```elixir
