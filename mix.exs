@@ -1,7 +1,7 @@
 defmodule PhoenixBricks.MixProject do
   use Mix.Project
 
-  @version "0.1.1"
+  @version "0.1.2"
   @elixir_requirements "~> 1.11"
 
   def project do
