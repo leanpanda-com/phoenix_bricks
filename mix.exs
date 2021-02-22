@@ -3,6 +3,7 @@ defmodule PhoenixBricks.MixProject do
 
   @version "0.1.2"
   @elixir_requirements "~> 1.11"
+  @source_url "https://github.com/davidlibrera/phoenix_bricks"
 
   def project do
     [
@@ -14,7 +15,7 @@ defmodule PhoenixBricks.MixProject do
       elixir: @elixir_requirements,
       package: package(),
       start_permanent: Mix.env() == :prod,
-      source_url: "https://github.com/davidlibrera/phoenix_bricks",
+      source_url: @source_url,
       version: @version
     ]
   end
@@ -54,7 +55,11 @@ defmodule PhoenixBricks.MixProject do
 
   defp docs do
     [
-      source_ref: "v#{@version}"
+      source_ref: "v#{@version}",
+      name: "Phoenix Bricks",
+      canonical: "http://hexdocs.pm/phoenix_bricks",
+      source_url: @source_url,
+      extras: ["README.md", "LICENSE.md"]
     ]
   end
 end
