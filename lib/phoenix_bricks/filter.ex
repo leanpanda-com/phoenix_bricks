@@ -41,7 +41,7 @@ defmodule PhoenixBricks.Filter do
   ## Convertion from map of params to a list of filtered scopes
 
   ```elixir
-      iex> changeset = RecordFilter.changeset(%RecordFilter{}, %{"field_matcher" => "value"})
+      iex> filters = %{"field_matcher" => "value}
       iex> RecordFilter.convert_filter_to_scopes(filters)
       iex> [field_matcher: "value"]
   ```

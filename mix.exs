@@ -48,7 +48,7 @@ defmodule PhoenixBricks.MixProject do
 
   defp description do
     """
-    Provide simple modules with common method for pure CRUD PhoenixLiveView
+    Provides simple modules with common method for pure CRUD PhoenixLiveView
     applications.
     """
   end
