@@ -119,7 +119,7 @@ defmodule PhoenixBricks.Scopes do
         |> scope(scopes)
       end
 
-      def scope() do
+      def scope do
         starting_scope()
       end
 
