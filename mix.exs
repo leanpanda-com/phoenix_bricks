@@ -9,6 +9,7 @@ defmodule PhoenixBricks.MixProject do
       app: :phoenix_bricks,
       deps: deps(),
       description: description(),
+      dialyzer: [plt_file: {:no_warn, "priv/plts/dialyzer.plt"}],
       docs: docs(),
       elixir: @elixir_requirements,
       package: package(),
@@ -38,6 +39,7 @@ defmodule PhoenixBricks.MixProject do
   defp deps do
     [
       {:credo, "~> 1.1", only: [:dev, :test], runtime: false},
+      {:dialyxir, "~> 1.0", only: [:dev], runtime: false},
       {:ecto_sql, "~> 3.4"},
       {:ex_doc, "~> 0.22", only: :dev, runtime: false}
     ]
