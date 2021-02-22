@@ -9,12 +9,10 @@ defmodule PhoenixBricks.FilterTest do
   end
 
   describe "using PhoenixBricks.Filter" do
-    test "convert_filters_to_scopes/1" do
+    test "convert_params_to_scopes/1" do
       params = %{"filters" => %{"field_matcher" => "value"}}
 
-      assert FilterExample.convert_filters_to_scopes(params["filters"]) == [
-               field_matcher: "value"
-             ]
+      assert FilterExample.convert_params_to_scopes(params) == [field_matcher: "value"]
     end
 
     test "changeset/2" do
