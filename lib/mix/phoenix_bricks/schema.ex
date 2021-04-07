@@ -20,6 +20,11 @@ defmodule Mix.PhoenixBricks.Schema do
     }
   end
 
+  def valid_schema_name?(schema_name) when is_binary(schema_name),
+    do: schema_name =~ ~r/^[A-Z]\w*\.[A-Z]\w*$/
+
+  def valid_schema_name?(_), do: false
+
   defp extract_fields(filters) do
     filters
     |> Enum.map(&String.split(&1, ":"))
