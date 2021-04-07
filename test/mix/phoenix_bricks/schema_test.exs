@@ -20,5 +20,12 @@ defmodule Mix.PhoenixBricks.SchemaTest do
     test "sets a module", %{schema: schema} do
       assert schema.module == PhoenixBricks.Context.Schema
     end
+
+    test "sets fields", %{schema: schema} do
+      assert schema.fields == [
+               {"name", "matches", "string"},
+               {"count", "gte", "integer"}
+             ]
+    end
   end
 end
