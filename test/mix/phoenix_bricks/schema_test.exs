@@ -16,5 +16,9 @@ defmodule Mix.PhoenixBricks.SchemaTest do
     test "sets a context_app", %{schema: schema} do
       assert schema.context_app == :phoenix_bricks
     end
+
+    test "sets a module", %{schema: schema} do
+      assert schema.module == PhoenixBricks.Context.Schema
+    end
   end
 end
