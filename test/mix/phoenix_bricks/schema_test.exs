@@ -27,6 +27,10 @@ defmodule Mix.PhoenixBricks.SchemaTest do
                {"count", "gte", "integer"}
              ]
     end
+
+    test "sets base_file_path", %{schema: schema} do
+      assert schema.base_file_path == "lib/phoenix_bricks/context/schema"
+    end
   end
 
   describe "valid_schema_name?/1" do
