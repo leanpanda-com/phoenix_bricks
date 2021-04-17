@@ -17,9 +17,9 @@ defmodule Mix.Tasks.Phx.Bricks.Gen.Filter do
       )
     end
 
-    schema =
-      args
-      |> build()
+    args
+    |> build()
+    |> create_filter_file()
   end
 
   defp build(args) do
@@ -30,10 +30,22 @@ defmodule Mix.Tasks.Phx.Bricks.Gen.Filter do
     Schema.new(schema_name, filters)
   end
 
-  defp validate_args!([]), do: raise_with_help("Schema name not provided")
+  defp create_filter_file(%Schema{base_file_path: base_file_path} = schema) do
+    Mix.Phoenix.copy_from(
+      [".", :phoenix_bricks],
+      "priv/templates/phx.bricks.gen",
+      [schema: schema],
+      [{:eex, "filter.ex", "#{base_file_path}_filter.ex"}]
+    )
+  end
 
-  defp validate_args!([schema | _filters] = args) do
-    if Schema.valid_schema_name?(schema), do: args, else: raise_with_help("Schema name not valid")
+  defp validate_args!([]), do: raise_with_help("Schema name not provided")
+  defp validate_args!([_schema_name]), do: raise_with_help("Provide at least one field")
+
+  defp validate_args!([schema_name | filters] = args) do
+    if !Schema.valid_schema_name?(schema_name), do: raise_with_help("Schema name not valid")
+    if !Schema.valid_fields?(filters), do: raise_with_help("Fields not valid")
+    args
   end
 
   defp raise_with_help(msg) do
