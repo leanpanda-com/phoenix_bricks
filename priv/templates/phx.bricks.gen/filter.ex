@@ -1,5 +1,7 @@
 defmodule <%= inspect schema.module %>Filter do
-  @moduledoc false
+  @moduledoc """
+  Provides an interface to extract a list of scopes from params from a search form.
+  """
 
   use Ecto.Schema
 
@@ -16,6 +18,15 @@ defmodule <%= inspect schema.module %>Filter do
     |> cast(attrs, [<%= schema.fields |> Enum.map(fn {name, matcher, _} -> ":#{name}_#{matcher}" end) |> Enum.join(", ") %>])
   end
 
+  @doc """
+  Returns a list of scopes extract from params filters discarding filters that aren't valid fields.
+
+      iex> params_to_scope(%{"filters" => %{<%=
+        with {name, matcher, _} <- hd(schema.fields),
+          do: "\"#{name}_#{matcher}\""
+      %> => "value", "not_valid_matcher" => "value"}})
+      [<%= with {name, matcher, _} <- hd(schema.fields), do: "#{name}_#{matcher}" %>: "value"]
+  """
   def params_to_scope(params) do
     filters = Map.get(params, "filters", %{})
 
