@@ -40,7 +40,6 @@ defmodule Mix.Tasks.Phx.Bricks.Gen.Filter do
   end
 
   defp validate_args!([]), do: raise_with_help("Schema name not provided")
-  defp validate_args!([_schema_name]), do: raise_with_help("Provide at least one field")
 
   defp validate_args!([schema_name | filters] = args) do
     if !Schema.valid_schema_name?(schema_name), do: raise_with_help("Schema name not valid")
@@ -51,6 +50,11 @@ defmodule Mix.Tasks.Phx.Bricks.Gen.Filter do
   defp raise_with_help(msg) do
     Mix.raise("""
     #{msg}
+    mix phx.bricks.gen.filter expects a schema module name.
+    For example:
+    mix phx.bricks.gen.filter Product
+    The filter serves as schema for filter form and provides a keyword list of
+    filters parsed from params.
     """)
   end
 end
