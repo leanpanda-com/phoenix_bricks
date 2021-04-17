@@ -8,6 +8,8 @@ defmodule Mix.PhoenixBricks.Schema do
             fields: [],
             module: nil
 
+  @valid_matchers ~w(eq neq lt lte gt gte in matches)
+
   def new(schema_name, filters) do
     context_app = Mix.Phoenix.context_app()
     base = Mix.Phoenix.context_base(context_app)
@@ -29,9 +31,17 @@ defmodule Mix.PhoenixBricks.Schema do
 
   def valid_schema_name?(_), do: false
 
-  defp extract_fields(filters) do
-    filters
-    |> Enum.map(&String.split(&1, ":"))
+  def valid_fields?(fields) do
+    fields
+    |> split_fields()
+    |> Enum.all?(&(Enum.at(&1, 1) in @valid_matchers))
+  end
+
+  defp split_fields(fields), do: Enum.map(fields, &String.split(&1, ":"))
+
+  defp extract_fields(fields) do
+    fields
+    |> split_fields()
     |> Enum.map(fn [name, matcher, type] -> {name, matcher, type} end)
   end
 end

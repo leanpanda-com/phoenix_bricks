@@ -52,4 +52,21 @@ defmodule Mix.PhoenixBricks.SchemaTest do
       refute Schema.valid_schema_name?(nil)
     end
   end
+
+  describe "valid_fields?/1" do
+    test "with valid matchers validate it" do
+      assert Schema.valid_fields?(["title:eq:string"])
+      assert Schema.valid_fields?(["title:neq:string"])
+      assert Schema.valid_fields?(["title:gt:string"])
+      assert Schema.valid_fields?(["title:gte:string"])
+      assert Schema.valid_fields?(["title:lt:string"])
+      assert Schema.valid_fields?(["title:lte:string"])
+      assert Schema.valid_fields?(["title:matches:string"])
+      assert Schema.valid_fields?(["title:in:string"])
+    end
+
+    test "with invalid matchers doens't validate it" do
+      refute Schema.valid_fields?(["title:not_valid_matcher:string"])
+    end
+  end
 end
