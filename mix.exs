@@ -10,7 +10,7 @@ defmodule PhoenixBricks.MixProject do
       app: :phoenix_bricks,
       deps: deps(),
       description: description(),
-      dialyzer: [plt_file: {:no_warn, "priv/plts/dialyzer.plt"}],
+      dialyzer: dialyzer(),
       docs: docs(),
       elixir: @elixir_requirements,
       package: package(),
@@ -42,7 +42,8 @@ defmodule PhoenixBricks.MixProject do
       {:credo, "~> 1.1", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.0", only: [:dev], runtime: false},
       {:ecto_sql, "~> 3.4"},
-      {:ex_doc, "~> 0.22", only: :dev, runtime: false}
+      {:ex_doc, "~> 0.22", only: :dev, runtime: false},
+      {:phoenix, "~> 1.5.3"}
     ]
   end
 
@@ -51,6 +52,13 @@ defmodule PhoenixBricks.MixProject do
     Provides simple modules with common method for pure CRUD PhoenixLiveView
     applications.
     """
+  end
+
+  defp dialyzer do
+    [
+      plt_add_apps: [:mix],
+      plt_file: {:no_warn, "priv/plts/dialyzer.plt"}
+    ]
   end
 
   defp docs do
