@@ -27,7 +27,7 @@ defmodule <%= inspect schema.module %>Filter do
       %>not_valid_matcher" => "value"}})
       [<%= with {name, matcher, _} <- List.first(schema.fields), do: "#{name}_#{matcher}: \"value\"" %>]
   """
-  def params_to_scope(params) do
+  def params_to_scopes(params) do
     filters = Map.get(params, "filters", %{})
 
     filter_changeset = changeset(%<%= inspect(schema.module) |> String.split(".") |> List.last() %>Filter{}, filters)

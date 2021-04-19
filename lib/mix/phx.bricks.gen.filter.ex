@@ -47,6 +47,7 @@ defmodule Mix.Tasks.Phx.Bricks.Gen.Filter do
     args
   end
 
+  @spec raise_with_help(String.t()) :: no_return()
   defp raise_with_help(msg) do
     Mix.raise("""
     #{msg}
