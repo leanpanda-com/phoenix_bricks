@@ -1,4 +1,4 @@
-# PhoenixBricks [![Circle CI](https://circleci.com/gh/leanpanda-com/phoenix_bricks/tree/master.svg?style=svg)](https://circleci.com/gh/leanpanda-com/phoenix_bricks/tree/master)
+# PhoenixBricks [![Circle CI](https://circleci.com/gh/leanpanda-com/phoenix_bricks/tree/master.svg?style=svg)](https://circleci.com/gh/leanpanda-com/phoenix_bricks/tree/master) [![Coverage Status](https://coveralls.io/repos/github/leanpanda-com/phoenix_bricks/badge.png?branch=master)](https://coveralls.io/github/leanpanda-com/phoenix_bricks?branch=master)
 A set of proposed patterns to improve code organization for [Phoenix](https://phoenixframework.org) application
 
 ## Installation

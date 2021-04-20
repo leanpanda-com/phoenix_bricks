@@ -14,8 +14,10 @@ defmodule PhoenixBricks.MixProject do
       docs: docs(),
       elixir: @elixir_requirements,
       package: package(),
+      preferred_cli_env: [coveralls: :test, "coveralls.circle": :test],
       start_permanent: Mix.env() == :prod,
       source_url: @source_url,
+      test_coverage: [tool: ExCoveralls],
       version: @version
     ]
   end
@@ -43,6 +45,7 @@ defmodule PhoenixBricks.MixProject do
       {:dialyxir, "~> 1.0", only: [:dev], runtime: false},
       {:ecto_sql, "~> 3.4"},
       {:ex_doc, "~> 0.22", only: :dev, runtime: false},
+      {:excoveralls, "~> 0.13", only: :test},
       {:phoenix, "~> 1.5.3"}
     ]
   end
