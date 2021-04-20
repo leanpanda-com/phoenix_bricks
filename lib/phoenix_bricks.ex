@@ -77,12 +77,12 @@ defmodule PhoenixBricks do
   iex> Context.list_records(title_matches: "value", price_lte: 42)
   ```
 
-  ### `PhoenixBricks.Scopes`
-  Using `PhoenixBricks.Scopes` it's possible to extend a module with all scope
+  ### `PhoenixBricks.Query`
+  Using `PhoenixBricks.Query` it's possible to extend a module with all scope
   behaviours:
   ```elixir
   defmodule RecordQuery do
-    use PhoenixBricks.Scopes, schema: RecordSchema
+    use PhoenixBricks.Query, schema: RecordSchema
 
     defp apply_scope(query, {:title_matches, "value"}) do
       query

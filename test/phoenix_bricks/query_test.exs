@@ -1,4 +1,4 @@
-defmodule PhoenixBricks.ScopesTest do
+defmodule PhoenixBricks.QueryTest do
   use ExUnit.Case
 
   defmodule Record do
@@ -11,7 +11,7 @@ defmodule PhoenixBricks.ScopesTest do
   end
 
   defmodule QueryExample do
-    use PhoenixBricks.Scopes, schema: Record
+    use PhoenixBricks.Query, schema: Record
   end
 
   defp convert_wheres_to_text(wheres) do
@@ -34,7 +34,7 @@ defmodule PhoenixBricks.ScopesTest do
 
   test "scope/2 with a query and a list of scopes returns a queryable" do
     starting_scope = QueryExample.scope(title: {:eq, "value"})
-    query = QueryExample.scope(starting_scope, price: {:lte, 10})
+    query = QueryExample.scope([price: {:lte, 10}], starting_scope)
 
     where_fragment = convert_wheres_to_text(query.wheres)
 

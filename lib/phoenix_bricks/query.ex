@@ -1,11 +1,11 @@
-defmodule PhoenixBricks.Scopes do
+defmodule PhoenixBricks.Query do
   @moduledoc ~S"""
   Defines a common interface for adding scopes to a Schema
 
   ## Examples
   ```elixir
   defmodule RecordQuery do
-    use ExBricks.Scopes, schema: Record
+    use PhoenixBricks.Query, schema: Record
   end
   ```
 
@@ -81,7 +81,7 @@ defmodule PhoenixBricks.Scopes do
   new `apply_scope/2` methods
   ```elixir
   defmodule RecordQuery, do
-    use ExBricks.Scopes, schema: Record
+    use PhoenixBricks.Query, schema: Record
 
     defp apply_scope(query, {:name_matches, "value"}) do
       query
@@ -107,7 +107,7 @@ defmodule PhoenixBricks.Scopes do
         unquote(schema)
       end
 
-      def scope(scopes, starting_scopes) do
+      def scope(scopes, starting_scope) do
         scopes
         |> Enum.reduce(starting_scope, fn scope, query ->
           apply_scope(query, scope)

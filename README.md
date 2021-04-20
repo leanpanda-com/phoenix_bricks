@@ -26,12 +26,19 @@ $ mix deps.get
 A query is a module that receives a list of atom/keywords and returns an Ecto.Query improved with provided scopes
 
 ```elixir
-ProductQuery.scope([title_matches: "a value", price_is_greater_than: 1000])
+# lib/phoenix_bricks/catalogue/product_query.ex
+defmodule PhoenixBricks.Catalogue.ProductQuery do
+  use PhoenixBricks.Query
+end
+
+[title_matches: "a value", price_is_greater_than: 1000]
+|> ProductQuery.scope()
 => #Ecto.Query<from p0 in PhoenixBricks.Catalogue.Product,
  where: ilike(p0.title, ^"%a value%"), where: p0.price >= ^1000
 ```
 
 The idea is to have a query composer that could be easy to use like [ActiveRecord](https://github.com/rails/rails/tree/main/activerecord).
+
 
 To generate a query for the `Catalogue.Product` schema with some additional custom scopes, simply run
 ```elixir
