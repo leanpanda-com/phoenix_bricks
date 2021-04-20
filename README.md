@@ -104,7 +104,7 @@ defmodule PhoenixBricks.Catalogue.ProductQuery do
 end
 ```
 
-Using the `ProductQuery` module it's possible to rewrite the `list_products/0` method of the context this way:
+Using the module `ProductQuery` it's possible to rewrite the `list_products/0` method of the context this way:
 ```elixir
 defmodule PhoenixBricks.Catalogue do
   ...
@@ -119,7 +119,7 @@ end
 |> Catalogue.list_products()
 ```
 
-If you wanto to add custom scopes you simply have to add new definitions of the `apply_scope/2` method:
+If you want to add custom scopes you simply have to add new definitions of the `apply_scope/2` method:
 ```elixir
 defp apply_scope(query, :active) do
   from(q in query, where: q.active == true)
@@ -145,11 +145,12 @@ A filter is a module that receives a map of filters (for instance coming from a 
 => [title_matches: "a value"]
 ```
 
-To generate a module filter for the `Catalogue.Product` schema you simply have to run
+To generate a module filter for the schema `Catalogue.Product` you can run
 ```elixir
 $ mix phx.bricks.gen.filters Catalogue.Product title:matches:string price:gte:integer
 ```
-that will create a schema that we could use if a form for records filtering.
+
+The generated module is a schema that allow you to handle filters from a search form
 ```elixir
 defmodule CrudExample.Catalogue.ProductFilter do
   @moduledoc false
@@ -224,7 +225,7 @@ end
 <% end %>
 ```
 
-### Query e Filters
+### Query and Filters
 The 2 modules can be used in pipeline since the output format for filters are the input format of queries.
 
 ```elixir
