@@ -1,9 +1,9 @@
 defmodule PhoenixBricks.MixProject do
   use Mix.Project
 
-  @version "0.3.0"
+  @version "0.3.1"
   @elixir_requirements "~> 1.11"
-  @source_url "https://github.com/davidlibrera/phoenix_bricks"
+  @source_url "https://github.com/leanpanda-com/phoenix_bricks"
 
   def project do
     [
