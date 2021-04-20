@@ -1,4 +1,4 @@
-# PhoenixBricks
+# PhoenixBricks [![Circle CI](https://circleci.com/gh/leanpanda-com/phoenix_bricks/tree/master.svg?style=svg)](https://circleci.com/gh/leanpanda-com/phoenix_bricks/tree/master)
 A set of proposed patterns to improve code organization for [Phoenix](https://phoenixframework.org) application
 
 ## Installation
