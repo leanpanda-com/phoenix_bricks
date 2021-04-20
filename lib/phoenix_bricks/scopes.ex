@@ -107,7 +107,7 @@ defmodule PhoenixBricks.Scopes do
         unquote(schema)
       end
 
-      def scope(starting_scope, scopes) do
+      def scope(scopes, starting_scopes) do
         scopes
         |> Enum.reduce(starting_scope, fn scope, query ->
           apply_scope(query, scope)
@@ -115,8 +115,7 @@ defmodule PhoenixBricks.Scopes do
       end
 
       def scope(scopes) do
-        starting_scope()
-        |> scope(scopes)
+        scope(scopes, starting_scope())
       end
 
       def scope do
