@@ -22,36 +22,36 @@ defmodule <%= inspect schema.module %>Query do
     starting_scope()
   end
 
-  defp apply_scope(query, {column, {:eq, value}}) do
+  def apply_scope(query, {column, {:eq, value}}) do
     where(query, [q], field(q, ^column) == ^value)
   end
 
-  defp apply_scope(query, {column, {:neq, value}}) do
+  def apply_scope(query, {column, {:neq, value}}) do
     where(query, [q], field(q, ^column) != ^value)
   end
 
-  defp apply_scope(query, {column, {:lte, value}}) do
+  def apply_scope(query, {column, {:lte, value}}) do
     where(query, [q], field(q, ^column) <= ^value)
   end
 
-  defp apply_scope(query, {column, {:lt, value}}) do
+  def apply_scope(query, {column, {:lt, value}}) do
     where(query, [q], field(q, ^column) < ^value)
   end
 
-  defp apply_scope(query, {column, {:gte, value}}) do
+  def apply_scope(query, {column, {:gte, value}}) do
     where(query, [q], field(q, ^column) >= ^value)
   end
 
-  defp apply_scope(query, {column, {:gt, value}}) do
+  def apply_scope(query, {column, {:gt, value}}) do
     where(query, [q], field(q, ^column) > ^value)
   end
 
-  defp apply_scope(query, {column, {:matches, value}}) do
+  def apply_scope(query, {column, {:matches, value}}) do
     value = "%#{value}%"
     where(query, [q], ilike(field(q, ^column), ^value))
   end
 <%= for {name, matcher, _} <- schema.fields do %>
-  defp apply_scope(query, {:<%= "#{name}_#{matcher}" %>, value}) do
+  def apply_scope(query, {:<%= "#{name}_#{matcher}" %>, value}) do
     apply_scope(query, {:<%= name %>, {:<%= matcher %>, value}})
   end
 <% end %>end

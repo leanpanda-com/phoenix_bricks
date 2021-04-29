@@ -72,40 +72,40 @@ defmodule PhoenixBricks.Catalogue.ProductQuery do
     starting_scope()
   end
 
-  defp apply_scope(query, {column, {:eq, value}}) do
+  def apply_scope(query, {column, {:eq, value}}) do
     where(query, [q], field(q, ^column) == ^value)
   end
 
-  defp apply_scope(query, {column, {:neq, value}}) do
+  def apply_scope(query, {column, {:neq, value}}) do
     where(query, [q], field(q, ^column) != ^value)
   end
 
-  defp apply_scope(query, {column, {:lte, value}}) do
+  def apply_scope(query, {column, {:lte, value}}) do
     where(query, [q], field(q, ^column) <= ^value)
   end
 
-  defp apply_scope(query, {column, {:lt, value}}) do
+  def apply_scope(query, {column, {:lt, value}}) do
     where(query, [q], field(q, ^column) < ^value)
   end
 
-  defp apply_scope(query, {column, {:gte, value}}) do
+  def apply_scope(query, {column, {:gte, value}}) do
     where(query, [q], field(q, ^column) >= ^value)
   end
 
-  defp apply_scope(query, {column, {:gt, value}}) do
+  def apply_scope(query, {column, {:gt, value}}) do
     where(query, [q], field(q, ^column) > ^value)
   end
 
-  defp apply_scope(query, {column, {:matches, value}}) do
+  def apply_scope(query, {column, {:matches, value}}) do
     value = "%#{value}%"
     where(query, [q], ilike(field(q, ^column), ^value))
   end
 
-  defp apply_scope(query, {:title_matches, value}) do
+  def apply_scope(query, {:title_matches, value}) do
     apply_scope(query, {:title, {:matches, value}})
   end
 
-  defp apply_scope(query, {:price_gte, value}) do
+  def apply_scope(query, {:price_gte, value}) do
     apply_scope(query, {:price, {:gte, value}})
   end
 end
@@ -128,11 +128,11 @@ end
 
 If you want to add custom scopes you simply have to add new definitions of the `apply_scope/2` method:
 ```elixir
-defp apply_scope(query, :active) do
+def apply_scope(query, :active) do
   from(q in query, where: q.active == true)
 end
 
-defp apply_scope(query, {:some_scope_name, value}) do
+def apply_scope(query, {:some_scope_name, value}) do
   from(query in q, ...)
 end
 ...

@@ -83,12 +83,12 @@ defmodule PhoenixBricks.Query do
   defmodule RecordQuery, do
     use PhoenixBricks.Query, schema: Record
 
-    defp apply_scope(query, {:name_matches, "value"}) do
+    def apply_scope(query, {:name_matches, "value"}) do
       query
       |> apply_scope(:name, {:matches, "value"})
     end
 
-    defp apply_scope(query, {:published}) do
+    def apply_scope(query, {:published}) do
       query
       |> where([p], p.status == "published")
     end
@@ -122,31 +122,31 @@ defmodule PhoenixBricks.Query do
         starting_scope()
       end
 
-      defp apply_scope(query, {column, {:eq, value}}) do
+      def apply_scope(query, {column, {:eq, value}}) do
         where(query, [q], field(q, ^column) == ^value)
       end
 
-      defp apply_scope(query, {column, {:neq, value}}) do
+      def apply_scope(query, {column, {:neq, value}}) do
         where(query, [q], field(q, ^column) != ^value)
       end
 
-      defp apply_scope(query, {column, {:lte, value}}) do
+      def apply_scope(query, {column, {:lte, value}}) do
         where(query, [q], field(q, ^column) <= ^value)
       end
 
-      defp apply_scope(query, {column, {:lt, value}}) do
+      def apply_scope(query, {column, {:lt, value}}) do
         where(query, [q], field(q, ^column) < ^value)
       end
 
-      defp apply_scope(query, {column, {:gte, value}}) do
+      def apply_scope(query, {column, {:gte, value}}) do
         where(query, [q], field(q, ^column) >= ^value)
       end
 
-      defp apply_scope(query, {column, {:gt, value}}) do
+      def apply_scope(query, {column, {:gt, value}}) do
         where(query, [q], field(q, ^column) > ^value)
       end
 
-      defp apply_scope(query, {column, {:matches, value}}) do
+      def apply_scope(query, {column, {:matches, value}}) do
         where(query, [q], ilike(field(q, ^column), ^value))
       end
     end

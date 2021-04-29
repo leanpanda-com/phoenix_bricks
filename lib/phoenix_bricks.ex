@@ -55,12 +55,12 @@ defmodule PhoenixBricks do
       |> Enum.reduce(start_query, fn scope, query -> apply_scope(query, scope) end)
     end
 
-    defp apply_scope(query, {:title_matches, "value"}) do
+    def apply_scope(query, {:title_matches, "value"}) do
       query
       |> where([q], ...)
     end
 
-    defp apply_scope(query, {:price_lte, value}) do
+    def apply_scope(query, {:price_lte, value}) do
       query
       |> where([q], ...)
     end
@@ -84,7 +84,7 @@ defmodule PhoenixBricks do
   defmodule RecordQuery do
     use PhoenixBricks.Query, schema: RecordSchema
 
-    defp apply_scope(query, {:title_matches, "value"}) do
+    def apply_scope(query, {:title_matches, "value"}) do
       query
       |> where([q], ...)
     end
