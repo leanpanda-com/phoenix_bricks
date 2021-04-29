@@ -88,7 +88,7 @@ defmodule PhoenixBricks.Query do
       |> apply_scope(:name, {:matches, "value"})
     end
 
-    def apply_scope(query, {:published}) do
+    def apply_scope(query, :published) do
       query
       |> where([p], p.status == "published")
     end
@@ -107,7 +107,7 @@ defmodule PhoenixBricks.Query do
         unquote(schema)
       end
 
-      def scope(scopes, starting_scope) do
+      def scope(starting_scope, scopes) do
         scopes
         |> Enum.reduce(starting_scope, fn scope, query ->
           apply_scope(query, scope)
@@ -115,12 +115,16 @@ defmodule PhoenixBricks.Query do
       end
 
       def scope(scopes) do
-        scope(scopes, starting_scope())
+        scope(starting_scope(), scopes)
       end
 
       def scope do
         starting_scope()
       end
+
+      @type query :: Ecto.Query.t()
+      @spec apply_scope(query, atom() | {atom(), any()}) :: query
+      def apply_scope(query, opts \\ nil)
 
       def apply_scope(query, {column, {:eq, value}}) do
         where(query, [q], field(q, ^column) == ^value)
