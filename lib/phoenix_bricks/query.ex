@@ -153,6 +153,9 @@ defmodule PhoenixBricks.Query do
       def apply_scope(query, {column, {:matches, value}}) do
         where(query, [q], ilike(field(q, ^column), ^value))
       end
+
+      def apply_scope(query, {:pagination, {page, per}}) do
+      end
     end
   end
 end
