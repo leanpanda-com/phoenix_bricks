@@ -155,6 +155,11 @@ defmodule PhoenixBricks.Query do
       end
 
       def apply_scope(query, {:pagination, {page, per}}) do
+        offset = (page - 1) * per
+
+        query
+        |> limit(^per)
+        |> offset(^offset)
       end
     end
   end
