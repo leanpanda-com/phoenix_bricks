@@ -124,7 +124,6 @@ defmodule PhoenixBricks.Query do
 
       @type query :: Ecto.Query.t()
       @spec apply_scope(query, atom() | {atom(), any()}) :: query
-      def apply_scope(query, opts \\ nil)
 
       def apply_scope(query, {column, {:eq, value}}) do
         where(query, [q], field(q, ^column) == ^value)
